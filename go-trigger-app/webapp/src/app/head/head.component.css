@@ -1,0 +1,138 @@
+/* Layout */
+.head-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+  
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    animation: fade-in-up 2s forwards;
+}
+  
+.title {
+    color: white;
+    font-weight: bolder;
+    font-size: 5rem;
+    text-align: center;
+    line-height: 100%;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+    display: inline-block;
+}
+  
+.text-wrapper {
+    display: inline;
+    white-space: wrap;
+    font-size: 5rem;
+}
+  
+.welcome-text {
+    background-image: linear-gradient(to right, var(--primary), var(--secondary), var(--primary), var(--secondary));
+    background-clip: text;
+    color: transparent;
+    background-size: 300%;
+    animation: gradient 2s infinite;
+    position: relative;
+    text-shadow: none;
+    display: inline-block;
+}
+  
+.main-text {
+    color: white;
+    display: inline-block;
+}
+  
+.title-small {
+    font-weight: inherit;
+    color: inherit;
+}
+  
+.highlighted-name {
+    background-image: linear-gradient(to right, var(--primary), var(--secondary), var(--primary), var(--secondary));
+    background-clip: text;
+    color: transparent;
+    background-size: 300%;
+    animation: gradient 2s infinite;
+    position: relative;
+    text-shadow: none;
+    display: inline-block;
+}
+  
+/* Animations */
+.fade-out {
+    animation: fadeOut 1.5s ease forwards;
+}
+  
+.fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+  
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+  
+@keyframes gradient {
+    from { background-position-x: left; }
+    to { background-position-x: right; }
+}
+  
+/* Arrow */
+.arrow {
+    position: absolute;
+    bottom: 3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    animation: arrow 2s infinite;
+}
+  
+.arrow:hover {
+    animation-play-state: paused;
+    scale: 1.2;
+    transition: scale 200ms ease-out;
+}
+  
+@keyframes arrow {
+    0% {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+    25%, 50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+}
+  
+/* Responsive */
+@media (max-width: 700px) {
+    .header {
+        align-items: center;
+    }
+    .title {
+        font-size: 3rem;
+        line-height: calc(100% + 1rem);
+        font-weight: 800;
+        padding: 0 1rem;
+    }
+    .text-wrapper {
+        font-size: 3rem;
+    }
+}

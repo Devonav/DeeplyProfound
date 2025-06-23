@@ -1,1 +1,17 @@
-<p>head works!</p>
+<div class="head-container">
+  <div class="header">
+    <div class="title">
+      <span class="text-wrapper">
+        <span *ngIf="showWelcome" [ngClass]="{'welcome-text': true, 'fade-out': isFadingOut}">
+          Welcome! Thanks for stopping by.
+        </span>
+        <span *ngIf="showMain" class="main-text fade-in">
+          I'm <span class="title-small">Izaac Plambeck</span> A.K.A. <span class="highlighted-name">Beck</span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <a class="arrow" href="#about">
+    <img src="assets/caret-down.svg" alt="Scroll down arrow" />
+  </a>
+</div>
