@@ -1,12 +1,13 @@
 package main
 
 import (
+	"database/sql"
 	"go-trigger-app/db"
 	"go-trigger-app/web"
-	"database/sql"
-	_ "github.com/lib/pq"
 	"log"
 	"os"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -29,6 +30,6 @@ func dataSource() string {
 		host = "db"
 		pass = os.Getenv("db_pass")
 	}
-	return "postgresql://" + host + ":5432/goxygen" +
+	return "postgresql://" + host + ":5433/goxygen" +
 		"?user=goxygen&sslmode=disable&password=" + pass
 }

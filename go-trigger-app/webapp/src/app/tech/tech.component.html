@@ -1,0 +1,9 @@
+<div class="leaks-container">
+    <h2>Your Data Leaks</h2>
+    <ul class="leaks-list">
+      <li *ngFor="let tech of technologies" class="leak-item">
+        <h3>{{ tech.name }}</h3>
+        <p>{{ tech.details }}</p>
+      </li>
+    </ul>
+  </div>

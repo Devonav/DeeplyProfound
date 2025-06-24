@@ -14,15 +14,15 @@
         
         <div class="navbar-dropdown-menu" [class.show]="isDropdownOpen">
           <div class="dropdown-menu-content">
-            <a routerLink="/login" 
-               class="dropdown-menu-item" 
-               [class.active]="isActive('/login')">Login</a>
-            <a routerLink="/resources" 
-               class="dropdown-menu-item" 
-               [class.active]="isActive('/resources')">Resources</a>
-            <a routerLink="/register" 
-               class="dropdown-menu-item" 
-               [class.active]="isActive('/register')">Register</a>
+            <ng-container *ngIf="!authService.isLoggedIn()">
+              <a routerLink="/login" class="dropdown-menu-item" [class.active]="isActive('/login')">Login</a>
+              <a routerLink="/register" class="dropdown-menu-item" [class.active]="isActive('/register')">Register</a>
+            </ng-container>
+
+            <ng-container *ngIf="authService.isLoggedIn()">
+              <a routerLink="/leaks" class="dropdown-menu-item" [class.active]="isActive('/leaks')">Leaks</a>
+              <a (click)="logout()" class="dropdown-menu-item" style="cursor: pointer;">Logout</a>
+            </ng-container>
           </div>
         </div>
       </div>

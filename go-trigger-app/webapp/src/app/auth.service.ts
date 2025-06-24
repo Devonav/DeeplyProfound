@@ -1,55 +1,54 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated = false;
+  private apiUrl = environment.apiUrl;
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(username: string, password: string): boolean {
-    // Replace with actual authentication logic
-    if (username === 'demo' && password === 'demo') { // Temporary demo check
-      this.isAuthenticated = true;
-      return true;
-    }
-    return false;
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/login`, { username, password })
+      .pipe(
+        tap(response => {
+          if (response && response.token) {
+            localStorage.setItem('authToken', response.token);
+          }
+        }),
+        catchError(this.handleError<any>('login'))
+      );
+  }
+
+  register(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/register`, { username, password })
+      .pipe(
+        catchError(this.handleError<any>('register'))
+      );
   }
 
   logout(): void {
-    this.isAuthenticated = false;
-    this.router.navigate(['/']);
+    localStorage.removeItem('authToken');
+    this.router.navigate(['/login']);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    return this.getToken() !== null;
   }
 
-register(username: string, email: string, password: string): boolean {
-  // Replace with actual registration logic
-  // For now, we just simulate registration with localStorage
-  let users: Array<{ username: string; email: string; password: string }> = [];
-  const usersJson = localStorage.getItem('users');
-  if (usersJson) {
-    users = JSON.parse(usersJson);
-  }
-
-  if (users.some((user) => user.username === username)) {
-    return false;
-  }
-
-  users.push({ username, email, password });
-  localStorage.setItem('users', JSON.stringify(users));
-  this.isAuthenticated = true;
-  return true;
-}
-  getCurrentUser(): string | null {
-    // Replace with actual user retrieval logic
-    if (this.isAuthenticated) {
-      return 'demo'; // Temporary demo user
-    }
-    return null;
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }

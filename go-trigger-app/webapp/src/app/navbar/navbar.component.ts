@@ -1,8 +1,6 @@
-
-import { AuthService } from '../auth.service';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Component, HostListener } from '@angular/core'; 
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +10,7 @@ import { Component, HostListener } from '@angular/core';
 export class NavbarComponent {
   isDropdownOpen = false;
 
-  constructor(private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   toggleDropdown(event: Event): void {
     event.preventDefault();
@@ -34,5 +32,9 @@ export class NavbarComponent {
 
   isActive(route: string): boolean {
     return this.router.url === route;
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

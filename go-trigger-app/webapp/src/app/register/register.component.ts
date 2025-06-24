@@ -20,16 +20,23 @@ export class RegisterComponent {
   ) {}
 
   onSubmit(): void {
-    // Basic validation
     if (this.password !== this.confirmPassword) {
       this.error = 'Passwords do not match';
       return;
     }
 
-    if (this.authService.register(this.username, this.email, this.password)) {
-      this.router.navigate(['/home']);
-    } else {
-      this.error = 'Registration failed. Please try again.';
-    }
+    this.authService.register(this.username, this.password).subscribe({
+      next: (response) => {
+        if (response && response.id) {
+          // On successful registration, redirect to the login page
+          this.router.navigate(['/login']);
+        } else {
+          this.error = 'Registration failed. Please try again.';
+        }
+      },
+      error: (err) => {
+        this.error = 'Registration failed. Please try again.';
+      }
+    });
   }
 }

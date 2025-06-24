@@ -18,10 +18,17 @@ export class LoginComponent {
   ) {}
 
   onSubmit(): void {
-    if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/home']);
-    } else {
-      this.error = 'Invalid username or password';
-    }
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        if (response && response.token) {
+          this.router.navigate(['/leaks']);
+        } else {
+          this.error = 'Invalid username or password';
+        }
+      },
+      error: (err) => {
+        this.error = 'Invalid username or password';
+      }
+    });
   }
 }
