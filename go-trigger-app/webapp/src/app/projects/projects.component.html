@@ -1,1 +1,18 @@
-<p>projects works!</p>
+<div id="projects" class="projects-container">
+  <div class="projects-wrapper">
+    <div class="projects-line"></div>
+    <div class="projects-title">Projects</div>
+    <div class="projects-line"></div>
+  </div>
+
+  <div class="projects-grid">
+    <app-project-card
+      *ngFor="let i of projects"
+      [name]="i.name"
+      [github]="i.github"
+      [website]="i.website"
+      [image]="i.image"
+      [npm]="i.npm">
+    </app-project-card>
+  </div>
+</div>

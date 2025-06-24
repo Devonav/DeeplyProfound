@@ -1,0 +1,305 @@
+/* Login Page Specific Styles */
+:root {
+  --baseColor: #606468;
+  --iconFill: var(--baseColor);
+  --loginSubmitBackgroundColor: #ea4c88;
+  --loginSubmitHoverBackgroundColor: #d44179;
+  --loginSubmitColor: #eee;
+  --bgDark: #2c3338;
+  --bgMedium: #3b4148;
+  --textLight: #eee;
+}
+
+
+/* RESET + BASE LAYOUT for login page */
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+
+body.login-page {
+    background: url('/assets/images/Login.gif') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+
+}
+
+
+/* CONTAINER */
+body.login-page .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0 2rem;
+    opacity: 0.9;
+}
+
+/* LOGIN FORM SECTION */
+body.login-page .login-form-section {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: min(70vw, 280px);
+    aspect-ratio: 3/ 4;
+    padding: clamp(0.5rem, 2vw, 1rem);
+    justify-content: center;
+    background-color: rgba(59, 65, 72, 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADINGS */
+body.login-page h2 {
+    margin: 0 0 1rem 0;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+body.login-page p {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: white;
+    text-align: center;
+}
+
+body.login-page a:hover {
+    color: var(--loginSubmitHoverBackgroundColor);
+}
+
+/* FORM STYLING */
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Specific input field IDs */
+#loginName,
+#loginPassword {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--bgMedium);
+    color: var(--textLight);
+}
+
+/* LOGIN BUTTON */
+#loginButton {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: var(--loginSubmitHoverBackgroundColor);
+    color: var(--loginSubmitColor);
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* RESULT OUTPUT */
+#loginResult {
+    margin-bottom: 1rem;
+}
+
+.result-output {
+    background-color: var(--bgMedium);
+    color: var(--textLight);
+    padding: 1rem;
+    border-left: 4px solid var(--loginSubmitBackgroundColor);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+}
+
+.result-output:empty {
+    display: none;
+}
+
+/* Box Login */
+h1 {
+  font-size: 23px;
+  color: white;
+}
+
+.form {
+  width: 300px;
+  padding: 64px 15px 24px;
+  margin: 0 auto;
+  margin-top: 190px;
+}
+
+.form .control {
+  margin: 0 0 24px;
+}
+
+.form .control input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+.form .control input:hover,
+.form .control input:focus {
+  outline: none;
+  border: 0;
+}
+
+.form .btn {
+  width: 100%;
+  display: block;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.block-cube {
+  position: relative;
+}
+
+.block-cube .bg-top {
+  position: absolute;
+  height: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+  margin: 0;
+}
+
+.block-cube .bg-top .bg-inner {
+  bottom: 0;
+}
+
+.block-cube .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+}
+
+.block-cube .bg-right {
+  position: absolute;
+  background: rgba(0, 212, 255, 1);
+  top: -5px;
+  z-index: 0;
+  bottom: 5px;
+  width: 10px;
+  left: 100%;
+  transform: skew(0, -45deg);
+}
+
+.block-cube .bg-right .bg-inner {
+  left: 0;
+}
+
+.block-cube .bg .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+
+.block-cube .bg-inner {
+  background: #212121;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+
+.block-cube .text {
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube.block-input input {
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube.block-input input:focus ~ .bg-right .bg-inner,
+.block-cube.block-input input:focus ~ .bg-top .bg-inner,
+.block-cube.block-input input:focus ~ .bg-inner .bg-inner {
+  top: 100%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.block-cube.block-input .bg-top,
+.block-cube.block-input .bg-right,
+.block-cube.block-input .bg {
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease-in-out;
+}
+
+.block-cube.block-input .bg-right .bg-inner,
+.block-cube.block-input .bg-top .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+
+.block-cube.block-input:focus .bg-top,
+.block-cube.block-input:focus .bg-right,
+.block-cube.block-input:focus .bg,
+.block-cube.block-input:hover .bg-top,
+.block-cube.block-input:hover .bg-right,
+.block-cube.block-input:hover .bg {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* State hover, focus */
+.block-cube-hover:focus .bg .bg-inner,
+.block-cube-hover:hover .bg .bg-inner {
+  top: 100%;
+}
+
+.credits {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 15px 15px;
+  width: 100%;
+  z-index: 111;
+}
+
+.credits a {
+  opacity: 0.6;
+  color: #fff;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.credits a:hover {
+  opacity: 1;
+}

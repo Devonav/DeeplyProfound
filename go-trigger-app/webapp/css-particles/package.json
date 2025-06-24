@@ -1,0 +1,10 @@
+{
+  "name": "css-particles",
+  "version": "1.0.2",
+  "main": "dist/index.js",
+  "keywords": ["css", "animation", "particles", "stars"],
+  "author": "Aneks",
+  "license": "ISC",
+  "description": "",
+  "types": "./types/index.d.ts"
+}

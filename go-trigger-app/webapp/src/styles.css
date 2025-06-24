@@ -1,28 +1,647 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-body {
-    margin-top: 5%;
-    padding-right: 5%;
-    padding-left: 5%;
-    font-size: larger;
+:root {
+  --baseColor: #606468;
+  --iconFill: var(--baseColor);
+  --loginSubmitBackgroundColor: #ea4c88;
+  --loginSubmitHoverBackgroundColor: #d44179;
+  --loginSubmitColor: #eee;
+  --bgDark: #2c3338;
+  --bgMedium: #3b4148;
+  --textLight: #eee;
 }
 
-@media screen and (min-width: 800px) {
-    body {
-        padding-right: 15%;
-        padding-left: 15%;
-    }
+/* Font-face */
+@font-face {
+  font-family: 'Aesthetic';
+  src: url('/assets/aesthetic_moment/Aesthetic Moment Italic Personal Used.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 
-@media screen and (min-width: 1600px) {
-    body {
-        padding-right: 30%;
-        padding-left: 30%;
-    }
+/* General styles */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: var(--bgDark);
+  color: var(--baseColor);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.875rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Home page styles */
+.home-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.welcome-header {
+  font-size: 2.5rem;
+  color: var(--textLight);
+}
+
+.welcome-message {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* Apply font to all headings */
+h1, h2, h3, h4, h5, h6, .title, .navbar-brand {
+  font-family: 'Aesthetic', 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Used across login and contact pages */
+.form-section {
+  flex: 0 0 35%;
+  background-color: var(--bgMedium);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: solid var(--baseColor);
+  border-radius: 0.25rem;
+  background-color: var(--bgMedium);
+  color: var(--textLight);
+}
+
+.form-group input:focus {
+  outline: 2px solid var(--loginSubmitBackgroundColor);
+  outline-offset: -2px;
+}
+
+/* Buttons */
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+button.secondary {
+  background-color: var(--baseColor);
+}
+
+button.secondary:hover {
+  background-color: #707478;
+}
+
+/* LOGIN PAGE STYLES */
+body.login-page {
+  background: url('/assets/images/Login.gif') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+}
+
+body.login-page .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+  opacity: 0.9;
+}
+
+body.login-page .login-form-section {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: min(70vw, 280px);
+  aspect-ratio: 3 / 4;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  justify-content: center;
+  background-color: rgba(59, 65, 72, 0.9);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+}
+
+body.login-page h2 {
+  margin: 0 0 1rem 0;
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+body.login-page p {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: white;
+  text-align: center;
+}
+
+body.login-page a:hover {
+  color: var(--loginSubmitHoverBackgroundColor);
+}
+
+/* Form styling */
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#loginName,
+#loginPassword {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--bgMedium);
+  color: var(--textLight);
+}
+
+/* Login Button */
+#loginButton {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: var(--loginSubmitHoverBackgroundColor);
+  color: var(--loginSubmitColor);
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Result Output */
+#loginResult {
+  margin-bottom: 1rem;
+}
+
+.result-output {
+  background-color: var(--bgMedium);
+  color: var(--textLight);
+  padding: 1rem;
+  border-left: 4px solid var(--loginSubmitBackgroundColor);
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.result-output:empty {
+  display: none;
+}
+
+/* Box Login */
+h1 {
+  font-size: 23px;
+  color: white;
+}
+
+.form {
+  width: 300px;
+  padding: 64px 15px 24px;
+  margin: 0 auto;
+  margin-top: 190px;
+}
+
+.form .control {
+  margin: 0 0 24px;
+}
+
+.form .control input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+.form .control input:hover,
+.form .control input:focus {
+  outline: none;
+  border: 0;
+}
+
+.form .btn {
+  width: 100%;
+  display: block;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+/* Cube Styles */
+.block-cube {
+  position: relative;
+}
+
+.block-cube .bg-top {
+  position: absolute;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(52, 9, 121, 1) 37%, rgba(0, 212, 255, 1) 94%);
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+  margin: 0;
+}
+
+.block-cube .bg-top .bg-inner {
+  bottom: 0;
+}
+
+.block-cube .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(52, 9, 121, 1) 37%, rgba(0, 212, 255, 1) 94%);
+}
+
+.block-cube .bg-right {
+  position: absolute;
+  background: rgba(0, 212, 255, 1);
+  top: -5px;
+  z-index: 0;
+  bottom: 5px;
+  width: 10px;
+  left: 100%;
+  transform: skew(0, -45deg);
+}
+
+.block-cube .bg-right .bg-inner {
+  left: 0;
+}
+
+.block-cube .bg .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+
+.block-cube .bg-inner {
+  background: #212121;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+
+.block-cube .text {
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube.block-input input {
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube.block-input input:focus ~ .bg-right .bg-inner,
+.block-cube.block-input input:focus ~ .bg-top .bg-inner,
+.block-cube.block-input input:focus ~ .bg-inner .bg-inner {
+  top: 100%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.block-cube.block-input .bg-top,
+.block-cube.block-input .bg-right,
+.block-cube.block-input .bg {
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease-in-out;
+}
+
+.block-cube.block-input .bg-right .bg-inner,
+.block-cube.block-input .bg-top .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+
+.block-cube.block-input:focus .bg-top,
+.block-cube.block-input:focus .bg-right,
+.block-cube.block-input:focus .bg,
+.block-cube.block-input:hover .bg-top,
+.block-cube.block-input:hover .bg-right,
+.block-cube.block-input:hover .bg {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* State hover, focus */
+.block-cube-hover:focus .bg .bg-inner,
+.block-cube-hover:hover .bg .bg-inner {
+  top: 100%;
+}
+
+/* Credits */
+.credits {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 15px 15px;
+  width: 100%;
+  z-index: 111;
+}
+
+.credits a {
+  opacity: 0.6;
+  color: #fff;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.credits a:hover {
+  opacity: 1;
+}
+
+/* Top Navigation Bar */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(44, 51, 56, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Desktop Layout */
+.navbar-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: darkgray;
+  flex: 1;
+  text-align: left;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-link:hover {
+  color: var(--textLight);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body:not(.resources-page) .navbar-link.active,
+body:not(.login-page) .navbar-link.active {
+  color: var(--loginSubmitBackgroundColor);
+  background-color: rgba(234, 76, 136, 0.1);
+}
+
+/* Adjust body padding to account for fixed navbar */
+body.login-page,
+body.register-page,
+body.resources-page {
+  padding-top: 80px;
+}
+
+/* Mobile Layout */
+@media (max-width: 600px) {
+  .navbar-content {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    font-size: 2rem;
+    flex: none;
+    text-align: center;
+  }
+
+  .navbar-links {
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  body.login-page,
+  body.register-page,
+  body.resources-page {
+    padding-top: 120px;
+  }
+}
+
+/* NAVBAR DROPDOWN CONTAINER */
+.navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* NAVBAR DROPDOWN TOGGLE BUTTON */
+.navbar-dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-dropdown-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* HAMBURGER MENU */
+.hamburger-menu {
+  width: 20px;
+  height: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-menu span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--baseColor);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-dropdown-toggle:hover .hamburger-menu span {
+  background-color: var(--textLight);
+}
+
+.navbar-dropdown-toggle.open .hamburger-menu span:first-child {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-dropdown-toggle.open .hamburger-menu span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-dropdown-toggle.open .hamburger-menu span:last-child {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* NAVBAR DROPDOWN MENU */
+.navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background-color: var(--bgMedium, #3b4148);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.navbar-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* DROPDOWN MENU CONTENT */
+.dropdown-menu-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* DROPDOWN MENU ITEMS */
+.dropdown-menu-item {
+  color: var(--baseColor);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  display: block !important;
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.dropdown-menu-item:hover {
+  color: var(--textLight);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu-item.active {
+  color: var(--loginSubmitBackgroundColor);
+  background-color: rgba(234, 76, 136, 0.1);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .navbar-dropdown-menu {
+    width: 250px;
+    right: -1rem;
+  }
+  .dropdown-menu-content {
+    padding: 1.5rem;
+  }
+  .dropdown-menu-item {
+    font-size: 1rem;
+    padding: 0.65rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-dropdown-menu {
+    width: 220px;
+    right: -0.5rem;
+  }
+  .dropdown-menu-content {
+    padding: 1.25rem;
+  }
+  .dropdown-menu-item {
+    font-size: 0.95rem;
+    padding: 0.6rem 0;
+  }
+}
+
+/* Logo */
+.bottom-right-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: auto;
+  z-index: 100;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bottom-right-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
